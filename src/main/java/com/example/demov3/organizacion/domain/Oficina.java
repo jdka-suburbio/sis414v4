@@ -1,54 +1,55 @@
-package com.example.demov3.Entities;
+package com.example.demov3.organizacion.domain;
 
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "auxiliar", uniqueConstraints = {@UniqueConstraint(columnNames = {"ENTIDAD", "UNIDAD", "CODCONT", "CODAUX"})})
-public class Auxiliar {
+@Table(name = "oficina", uniqueConstraints = {@UniqueConstraint(columnNames = {"ENTIDAD", "UNIDAD", "CODOFIC"})})
+public class Oficina {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ENTIDAD")
+    @Column(name = "ENTIDAD", length = 4)
     private String entidad;
 
-    @Column(name = "UNIDAD")
+    @Column(name = "UNIDAD", length = 5)
     private String unidad;
 
-    @Column(name = "CODCONT")
-    private Long codcont;
+    @Column(name = "CODOFIC")
+    private Long codofic;
 
-    @Column(name = "CODAUX")
-    private Long codaux;
+    @Column(name = "NOMOFIC", length = 65)
+    private String nomofic;
 
-    @Column(name = "NOMAUX")
-    private String nomaux;
-
-    @Column(name = "OBSERV")
+    // Campo memo (FPT) en dBase
+    @Column(name = "OBSERV", columnDefinition = "TEXT")
     private String observ;
 
     @Column(name = "FEULT")
     private Date feult;
 
-    @Column(name = "USUAR")
+    @Column(name = "USUAR", length = 8)
     private String usuar;
 
-    public Auxiliar() {
+    @Column(name = "API_ESTADO")
+    private Integer apiEstado;
+
+    public Oficina() {
     }
 
-    public Auxiliar(Long id,String entidad, String unidad, Long codaux, Long codcont, String nomaux, String observ, Date feult, String usuar) {
+    public Oficina(Long id, String entidad, String unidad, Long codofic, String nomofic, String observ, Date feult, String usuar, Integer apiEstado) {
         this.id = id;
         this.entidad = entidad;
         this.unidad = unidad;
-        this.codaux = codaux;
-        this.codcont = codcont;
-        this.nomaux = nomaux;
+        this.codofic = codofic;
+        this.nomofic = nomofic;
         this.observ = observ;
         this.feult = feult;
         this.usuar = usuar;
+        this.apiEstado = apiEstado;
     }
 
     public Long getId() {
@@ -75,28 +76,20 @@ public class Auxiliar {
         this.unidad = unidad;
     }
 
-    public Long getCodcont() {
-        return codcont;
+    public Long getCodofic() {
+        return codofic;
     }
 
-    public void setCodcont(Long codcont) {
-        this.codcont = codcont;
+    public void setCodofic(Long codofic) {
+        this.codofic = codofic;
     }
 
-    public Long getCodaux() {
-        return codaux;
+    public String getNomofic() {
+        return nomofic;
     }
 
-    public void setCodaux(Long codaux) {
-        this.codaux = codaux;
-    }
-
-    public String getNomaux() {
-        return nomaux;
-    }
-
-    public void setNomaux(String nomaux) {
-        this.nomaux = nomaux;
+    public void setNomofic(String nomofic) {
+        this.nomofic = nomofic;
     }
 
     public String getObserv() {
@@ -121,5 +114,13 @@ public class Auxiliar {
 
     public void setUsuar(String usuar) {
         this.usuar = usuar;
+    }
+
+    public Integer getApiEstado() {
+        return apiEstado;
+    }
+
+    public void setApiEstado(Integer apiEstado) {
+        this.apiEstado = apiEstado;
     }
 }
